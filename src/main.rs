@@ -20,8 +20,9 @@ fn select_file(input_dir: &PathBuf) -> DirEntry {
 
 fn main() {
     let input_dir = PathBuf::from(env::var("BG_DIR").expect("Missing environment variable BG_DIR"));
+    let sleep_duration = Duration::new(10, 0);
     loop {
         println!("{:?}", select_file(&input_dir));
-        sleep(Duration::new(10, 0));
+        sleep(sleep_duration);
     }
 }
