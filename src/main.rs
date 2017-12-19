@@ -14,10 +14,6 @@ mod args;
 fn main() {
     let args = args::build();
     let input_dir = PathBuf::from(args.value_of("directory").unwrap());
-    let input_files = files::get_files(&input_dir);
-    if input_files.is_empty() {
-        panic!("Could not find any valid files in directory {}", input_dir.display());
-    }
     let sleep_duration = Duration::new(10, 0);
 
     loop {
