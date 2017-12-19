@@ -28,15 +28,7 @@ pub fn build() -> ArgMatches<'static> {
         .version(crate_version!())
         .global_setting(AppSettings::ColoredHelp)
         .global_setting(AppSettings::StrictUtf8)
-        .arg(
-            Arg::with_name("directory")
-                .required(true)
-                .validator(validate_path)
-        )
-        .arg(
-            Arg::with_name("seconds")
-                .default_value("60")
-                .short("s")
-                .validator(validate_seconds)
-        ).get_matches();
+        .arg(Arg::with_name("directory").required(true).validator(validate_path))
+        .arg(Arg::with_name("seconds").default_value("60").short("s").validator(validate_seconds))
+        .get_matches();
 }
