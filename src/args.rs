@@ -14,6 +14,14 @@ fn validate_path(input: String) -> Result<(), String> {
     return Ok(());
 }
 
+fn validate_seconds(input: String) -> Result<(), String> {
+    let parse_result = input.parse::<u64>();
+    if parse_result.is_err() {
+        return Err(format!("Failed to parse {} as a number", input));
+    }
+    return Ok(());
+}
+
 pub fn build() -> ArgMatches<'static> {
     return App::new(crate_name!())
         .about(crate_description!())
@@ -24,5 +32,11 @@ pub fn build() -> ArgMatches<'static> {
             Arg::with_name("directory")
                 .required(true)
                 .validator(validate_path)
+        )
+        .arg(
+            Arg::with_name("seconds")
+                .default_value("60")
+                .short("s")
+                .validator(validate_seconds)
         ).get_matches();
 }
