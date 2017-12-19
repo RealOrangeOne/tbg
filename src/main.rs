@@ -1,13 +1,19 @@
 use std::thread::sleep;
 use std::time::Duration;
 use std::path::PathBuf;
+
 extern crate rand;
+
+#[macro_use]
+extern crate clap;
 
 mod files;
 mod image;
+mod args;
 
 fn main() {
-    let input_dir = PathBuf::from("");
+    let args = args::build();
+    let input_dir = PathBuf::from(args.value_of("directory").unwrap());
     let input_files = files::get_files(&input_dir);
     if input_files.is_empty() {
         panic!("Could not find any valid files in directory {}", input_dir.display());
