@@ -1,11 +1,12 @@
 # Maintainer: Jake Howard <git+aur@theorangeone.net>
 pkgname=tbg
 pkgver=0.1.0
-pkgrel=2
+pkgrel=3
 pkgdesc="Use feh to randomize desktop backgrounds from a directory "
 makedepends=('rust' 'cargo')
 license=('unknown')
 depends=('feh')
+url="https://github.com/RealOrangeOne/tbg"
 arch=('i686' 'x86_64' 'armv6h' 'armv7h')
 source=("$pkgver.tar.gz::https://github.com/RealOrangeOne/tbg/archive/$pkgver.tar.gz")
 sha512sums=('SKIP')
