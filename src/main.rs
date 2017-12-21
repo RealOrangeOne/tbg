@@ -15,11 +15,11 @@ fn main() {
     let args = args::build();
     let input_dir = PathBuf::from(args.value_of("directory").unwrap());
     let sleep_duration =
-        Duration::new(args.value_of("seconds").unwrap().parse::<u64>().unwrap(), 0);
+        Duration::new(args.value_of("minutes").unwrap().parse::<u64>().unwrap() * 60, 0);
     println!(
-        "Setting background from {} every {} seconds",
+        "Selecting background from {} every {} minutes",
         input_dir.display(),
-        sleep_duration.as_secs()
+        sleep_duration.as_secs() / 60
     );
     loop {
         if image::set_background_from(&input_dir).is_ok() {

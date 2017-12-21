@@ -14,10 +14,10 @@ fn validate_path(input: String) -> Result<(), String> {
     return Ok(());
 }
 
-fn validate_seconds(input: String) -> Result<(), String> {
-    let parse_result = input.parse::<u64>();
+fn validate_minutes(input: String) -> Result<(), String> {
+    let parse_result = input.parse::<i32>();
     if parse_result.is_err() {
-        return Err(format!("Failed to parse {} as a number", input));
+        return Err(format!("{} doesn't look like a number", input));
     }
     return Ok(());
 }
@@ -29,6 +29,6 @@ pub fn build() -> ArgMatches<'static> {
         .global_setting(AppSettings::ColoredHelp)
         .global_setting(AppSettings::StrictUtf8)
         .arg(Arg::with_name("directory").required(true).validator(validate_path))
-        .arg(Arg::with_name("seconds").default_value("60").short("s").validator(validate_seconds))
+        .arg(Arg::with_name("minutes").default_value("10").short("m").validator(validate_minutes))
         .get_matches();
 }
