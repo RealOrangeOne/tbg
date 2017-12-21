@@ -2,6 +2,7 @@
 pkgname=tbg
 pkgver=0.1.0
 pkgrel=1
+pkgdesc="Use feh to randomize desktop backgrounds from a directory "
 makedepends=('rust' 'cargo')
 license=('unknown')
 depends=('feh')
