@@ -11,7 +11,7 @@ jobs:
                 keys:
                     - cargo-{{ checksum "Cargo.lock" }}
             - run: which rustfmt || cargo install rustfmt
-            - run: cargo fmt -- --write-mode=diff
+            - run: cargo fmt -- --write-mode=diff --force
             - run: cargo build
             - run: cargo build --release
             - save_cache:
