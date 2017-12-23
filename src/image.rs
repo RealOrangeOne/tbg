@@ -1,6 +1,7 @@
 use std::process::{Command, Stdio};
 use files::get_files;
 use std::path::PathBuf;
+use std::os::unix::fs::symlink;
 
 use rand;
 use rand::Rng;
@@ -35,5 +36,6 @@ pub fn set_background_from(input_dir: &PathBuf) -> Result<(), ()> {
         eprintln!("Execution failed, Retrying...");
         return Err(());
     }
+    symlink(input_file, "/tmp/.wallpaper").expect("Failed to create symlink");
     return Ok(());
 }
