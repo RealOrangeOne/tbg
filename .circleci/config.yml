@@ -3,7 +3,7 @@ version: 2.0
 jobs:
     build:
         docker:
-            - image: jimmycuadra/rust
+            - image: rust:1.22.1
         working_directory: ~/tbg
         steps:
             - checkout
