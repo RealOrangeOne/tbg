@@ -1,10 +1,12 @@
 use std::process::{Command, Stdio};
 use files::get_files;
 use std::path::PathBuf;
-use std::os::unix::fs::symlink;
+use clap::ArgMatches;
+
 
 use rand;
 use rand::Rng;
+use post;
 
 
 pub fn is_valid_image(img: &PathBuf) -> bool {
@@ -18,7 +20,7 @@ pub fn is_valid_image(img: &PathBuf) -> bool {
         .success();
 }
 
-pub fn set_background_from(input_dir: &PathBuf) -> Result<(), ()> {
+pub fn set_background_from(input_dir: &PathBuf, args: &ArgMatches) -> Result<(), ()> {
     let mut input_files = get_files(input_dir);
     if input_files.is_empty() {
         panic!("Could not find any valid files in directory {}", input_dir.display());
@@ -36,6 +38,6 @@ pub fn set_background_from(input_dir: &PathBuf) -> Result<(), ()> {
         eprintln!("Execution failed, Retrying...");
         return Err(());
     }
-    symlink(input_file, "/tmp/.wallpaper").expect("Failed to create symlink");
+    post::handle_post_image(input_file, args);
     return Ok(());
 }

@@ -2,6 +2,7 @@ use std::thread::sleep;
 use std::time::Duration;
 use std::path::PathBuf;
 
+
 extern crate rand;
 
 #[macro_use]
@@ -10,6 +11,7 @@ extern crate clap;
 mod files;
 mod image;
 mod args;
+mod post;
 
 fn main() {
     let args = args::build();
@@ -22,7 +24,7 @@ fn main() {
         sleep_duration.as_secs() / 60
     );
     loop {
-        if image::set_background_from(&input_dir).is_ok() {
+        if image::set_background_from(&input_dir, &args).is_ok() {
             sleep(sleep_duration);
         }
     }

@@ -30,5 +30,6 @@ pub fn build() -> ArgMatches<'static> {
         .global_setting(AppSettings::StrictUtf8)
         .arg(Arg::with_name("directory").required(true).validator(validate_path))
         .arg(Arg::with_name("minutes").default_value("10").short("m").validator(validate_minutes))
+        .arg(Arg::with_name("command").takes_value(true).short("c").long("command"))
         .get_matches();
 }
