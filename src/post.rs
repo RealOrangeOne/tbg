@@ -13,8 +13,6 @@ pub fn handle_post_image(new_bg: PathBuf, args: &ArgMatches) {
     if cmd_result.is_some() {
         let cmd = cmd_result.unwrap().replace(CMD_REPLACEMENT, &new_bg.display().to_string());
         println!("Executing '{}'.", cmd);
-        Command::new("bash").arg("-c").arg(cmd).output().expect(
-            "Failed to run post command"
-        );
+        Command::new("bash").arg("-c").arg(cmd).output().expect("Failed to run post command");
     }
 }
